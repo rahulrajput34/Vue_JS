@@ -7,14 +7,14 @@
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <!-- Can able to do it over here because its outside the div where we gave id app -->
+    <!-- Can do it over here because it's outside the div where we gave id app -->
     <!-- <p>{{greeting}}</p> -->
     <div id="app">
-        <p>
-            <input type="text" v-model="greeting">
-        </p>
-        <!-- We can see it we can make every thing interrelated there is where the vue is heplful -->
-      <p>{{greeting}}({{greeting.length}})</p>
+      <p>
+        <input type="text" v-model="greeting" />
+      </p>
+      <!-- We can see it, we can make everything interrelated; that is where Vue is helpful -->
+      <p>{{greeting}} ({{greeting.length}})</p>
     </div>
     <script>
       Vue.createApp({
@@ -23,12 +23,13 @@
             greeting: "Hello brother",
           };
         },
-        mounted(){   // this method will fire when the page is done its activity
-            // After three seconds it would change and re-render the page behind the scene
-            setTimeout(() => {
-                this.greeting = "changed"
-            }, 3000);
-        }
+        mounted() {
+          // this method will fire when the page is done with its activity
+          // After three seconds, it would change and re-render the page behind the scenes
+          setTimeout(() => {
+            this.greeting = "changed";
+          }, 3000);
+        },
       }).mount("#app");
     </script>
   </body>

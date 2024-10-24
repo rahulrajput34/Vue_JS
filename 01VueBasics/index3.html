@@ -1,60 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- Vue js and tailwind css -->
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<!-- Here we have the class not the className like react -->
-<body class="h-screen grid place-items-center">
+  </head>
+  <!-- Here we have the class not the className like react -->
+  <body class="h-screen grid place-items-center">
     <div id="app">
-        <section>
-            <h2 class="font-bold mb-2">In Progress</h2>
-            <ul>
-                <!-- This is how we can loop of li-->
-                 <!-- We are facing some issue right -->
-                  <!-- So we must give the primary key over here to performm task perfectly-->
-                <li v-for="assignment in assignments.filter(a => !a.complete)" :key="assignment.id">
-                    <label>
-                        {{assignment.name}}
-                        <!-- This is how using the v-model we bind the value and also update the value if its changed -->
-                        <input v-model="assignment.complete" type="checkbox">
-                    </label>
-                </li>
-            </ul>
-        </section>
-
-        <section class="mt-8">
-            <h2 class="font-bold mb-2">Completed</h2>
-            <ul>
-                <!-- we want completed only list over here so we gave the filter method  -->
-                <li v-for="assignment in assignments.filter(a => a.complete)" :key="assignment.id">
-                    <label>
-                        {{assignment.name}}
-                        <!-- This is how using the v-model we bind the value and also update the value if its changed -->
-                        <input v-model="assignment.complete" type="checkbox">
-                    </label>
-                </li>
-            </ul>
-        </section>
+      <section v-show="inProgressAssignments.length">
+        <h2 class="font-bold mb-2">In Progress</h2>
+        <ul>
+          <!-- This is how we can loop over li -->
+          <!-- We are facing some issue, right? -->
+          <!-- So we must give the primary key over here to perform the task perfectly -->
+          <li v-for="assignment in inProgressAssignments" :key="assignment.id">
+            <label>
+              {{assignment.name}}
+              <!-- This is how using the v-model we bind the value and also update the value if it's changed -->
+              <input v-model="assignment.complete" type="checkbox" />
+            </label>
+          </li>
+        </ul>
+      </section>
+      <!-- We have v-if for condition -->
+      <!-- We can pass v-if over here and it works fine -->
+      <!-- Here we used v-show because it shows the section if the given condition is true -->
+      <!-- We are passing this same filter and all the time writing it -->
+      <!-- But if we have computed properties inside Vue JS, it is helpful to declare inside computed and use it again and again -->
+      <!-- <section v-show="assignments.filter(a => a.complete).length" class="mt-8"> -->
+      <section v-show="completedAssignments.length" class="mt-8">
+        <h2 class="font-bold mb-2">Completed</h2>
+        <ul>
+          <!-- We want only the completed list over here so we use the filter method -->
+          <li v-for="assignment in completedAssignments" :key="assignment.id">
+            <label>
+              {{assignment.name}}
+              <!-- This is how using the v-model we bind the value and also update the value if it's changed -->
+              <input v-model="assignment.complete" type="checkbox" />
+            </label>
+          </li>
+        </ul>
+      </section>
     </div>
     <script>
-        // We take a app outside
-        let app = {
-            data(){
-                return {
-                    assignments: [
-                        {name: 'Finish project', complete: false, id:1},
-                        {name: 'Read chapter', complete: false, id:2},
-                        {name: 'Trun in homework', complete: false, id:3},
-                    ]
-                }
-            }
-        }
-        Vue.createApp(app).mount("#app");
-    </script>   
-</body>
+      // We take the app outside
+      let app = {
+        data() {
+          return {
+            assignments: [
+              { name: "Finish project", complete: false, id: 1 },
+              { name: "Read chapter", complete: false, id: 2 },
+              { name: "Turn in homework", complete: false, id: 3 },
+            ],
+          };
+        },
+        // If we do not want to repeat the task again then we pass it inside computed and pass this function over there
+        computed: {
+          inProgressAssignments() {
+            return this.assignments.filter((a) => !a.complete);
+          },
+          completedAssignments() {
+            return this.assignments.filter((a) => a.complete);
+          },
+        },
+      };
+      Vue.createApp(app).mount("#app");
+    </script>
+  </body>
 </html>
