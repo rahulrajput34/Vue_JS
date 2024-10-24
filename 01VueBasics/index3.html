@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vue js and tailwind css -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- Here we have the class not the className like react -->
+<body class="h-screen grid place-items-center">
+    <div id="app">
+        <section>
+            <h2 class="font-bold mb-2">In Progress</h2>
+            <ul>
+                <!-- This is how we can loop of li-->
+                 <!-- We are facing some issue right -->
+                  <!-- So we must give the primary key over here to performm task perfectly-->
+                <li v-for="assignment in assignments.filter(a => !a.complete)" :key="assignment.id">
+                    <label>
+                        {{assignment.name}}
+                        <!-- This is how using the v-model we bind the value and also update the value if its changed -->
+                        <input v-model="assignment.complete" type="checkbox">
+                    </label>
+                </li>
+            </ul>
+        </section>
+
+        <section class="mt-8">
+            <h2 class="font-bold mb-2">Completed</h2>
+            <ul>
+                <!-- we want completed only list over here so we gave the filter method  -->
+                <li v-for="assignment in assignments.filter(a => a.complete)" :key="assignment.id">
+                    <label>
+                        {{assignment.name}}
+                        <!-- This is how using the v-model we bind the value and also update the value if its changed -->
+                        <input v-model="assignment.complete" type="checkbox">
+                    </label>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <script>
+        // We take a app outside
+        let app = {
+            data(){
+                return {
+                    assignments: [
+                        {name: 'Finish project', complete: false, id:1},
+                        {name: 'Read chapter', complete: false, id:2},
+                        {name: 'Trun in homework', complete: false, id:3},
+                    ]
+                }
+            }
+        }
+        Vue.createApp(app).mount("#app");
+    </script>   
+</body>
+</html>

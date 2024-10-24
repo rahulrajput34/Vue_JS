@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        html, body{
+            height: 100%;
+        }
+        body{
+            display: grid;
+            place-items: center;
+        }
+        .text-red{
+            color: red;
+        }
+        .text-green{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- This is how we can not do -->
+        <!-- <button class="{{buttonClasses}}">Click Me</button> -->
+        <!-- We must use the v-bind to give the class  -->
+        <!-- <button v-bind:class ="buttonClasses">Click Me</button> -->
+        <!-- because we want to use it too many time there is a sort form of it -->
+        <!-- So when we have dynamic css that time we use it otherwise we use simle class inside the Vue -->
+        <!-- <button :class ="buttonClasses" v-on:click="toggle">Click Me</button> -->
+        <!-- we also have sort form of the v-on as well -->
+        <!-- <button :class ="buttonClasses" @click="toggle">Click Me</button> -->
+
+        <!-- Changee the color by active true or false -->
+        <button :class ="active ? 'text-red': 'text-green'" @click="toggle">Click Me</button>
+
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    // buttonClasses: 'text-green',
+                    active: false
+                };
+            },
+
+            methods: {
+                toggle(){
+                    // this.buttonClasses = 'text-red';
+                    this.active = !(this.active);
+                }
+
+            }
+        }).mount("#app");
+    </script>   
+</body>
+</html>

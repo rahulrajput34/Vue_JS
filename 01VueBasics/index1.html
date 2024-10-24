@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue basics</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <!-- Can able to do it over here because its outside the div where we gave id app -->
+    <!-- <p>{{greeting}}</p> -->
+    <div id="app">
+        <p>
+            <input type="text" v-model="greeting">
+        </p>
+        <!-- We can see it we can make every thing interrelated there is where the vue is heplful -->
+      <p>{{greeting}}({{greeting.length}})</p>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            greeting: "Hello brother",
+          };
+        },
+        mounted(){   // this method will fire when the page is done its activity
+            // After three seconds it would change and re-render the page behind the scene
+            setTimeout(() => {
+                this.greeting = "changed"
+            }, 3000);
+        }
+      }).mount("#app");
+    </script>
+  </body>
+</html>
