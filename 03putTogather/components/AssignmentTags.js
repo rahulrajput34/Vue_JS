@@ -7,10 +7,10 @@ export default {
         <button 
           v-for="tag in tags" 
           :key="tag" 
-          @click="$emit('change', tag)"
+          @click="$emit('update:modelValue', tag)"
           class="border rounded px-1 py-px text-xs mb-5"
           :class = "{
-            'border-blue-500 text-blue-500': tag === currentTag
+            'border-blue-500 text-blue-500': tag === modelValue
           }"
         >
           {{ tag }}
@@ -22,7 +22,7 @@ export default {
     // Its gonna be the very common practise inside the vue js
     props: {
         initialTags: Array,
-        currentTag: String
+        modelValue: String
     },
 
     computed: {

@@ -7,6 +7,10 @@
 // Now I want the assignment which is in perticuler domain
 // Here inside the @change we listen the event
 
+// bind the value and pass event to it
+// :current-tag="currentTag"
+// @change="currentTag = $event"
+// Instead of these two use the v-model
 import Assignment from './Assignment.js'
 import AssignmentTags from './AssignmentTags.js'
 export default{
@@ -20,8 +24,7 @@ export default{
       </h2>
         <AssignmentTags
         :initial-tags="assignments.map(a => a.tag)"
-        :current-tag="currentTag"
-        @change="currentTag = $event"
+        v-model="currentTag"
         ></AssignmentTags>
       <ul>
         <Assignment 
