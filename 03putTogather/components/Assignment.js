@@ -2,7 +2,7 @@
 // To break it down into smaller chunks of the code and use it whenver we want
 // And also learnt the concept of the props
 export default{
-    template: `
+    template:/*html*/`
         <li>
           <label>
             {{ assignment.name }}

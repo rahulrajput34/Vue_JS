@@ -4,7 +4,7 @@ export default {
   components: {
     Assignments,
   },
-  template: `
+  template:/*html*/ `
     <Assignments></Assignments>
   `,
 };
