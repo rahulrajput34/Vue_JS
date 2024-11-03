@@ -5,47 +5,53 @@
 // Just pass the lenght and its works do not neet to do anything extra
 
 // Now I want the assignment which is in perticuler domain
+// Here inside the @change we listen the event
+
 import Assignment from './Assignment.js'
+import AssignmentTags from './AssignmentTags.js'
 export default{
-    components: {Assignment},
-    template:/*html*/`
+    components: {Assignment, AssignmentTags},
+    template:/*html*/
+    `
     <section v-show="assignments.length">
       <h2 class="font-bold mb-2">
         {{ title }}
         <span>({{ assignments.length }})</span>
       </h2>
-      <div class="flex gap-2">
-        <button 
-          v-for="tag in tags" 
-          :key="tag" 
-          @click="currentTag = tag"
-          class="border rounded px-1 py-px text-xs mb-5">
-          {{ tag }}
-        </button>
-      </div>
+        <AssignmentTags
+        :initial-tags="assignments.map(a => a.tag)"
+        :current-tag="currentTag"
+        @change="currentTag = $event"
+        ></AssignmentTags>
       <ul>
-        <assignment 
-          v-for="assignment in assignments " 
+        <Assignment 
+          v-for="assignment in filteredAssignments " 
           :key="assignment.id" 
           :assignment="assignment">
-        </assignment>
+        </Assignment>
       </ul>
     </section>
-  `,
+  `
+  // we passed the props becuase we are not able to access assignment and title over here
+  // So we must pass the props so that someone where he use this component they can pass the props from where he is using 
+  ,
     props: {
         assignments: Array,
         title: String
     },
+    
     data(){
       // The value from we got over here is from the @click="currentTag = tag"
       return {
-        currentTag: ''
+        currentTag: 'all'
       }
     },
     computed: {
-      tags(){
-        // set is to just get the unique value from the given array
-        return new Set(this.assignments.map(a => a.tag));
-      }
+      filteredAssignments(){
+        if(this.currentTag === 'all'){
+          return this.assignments
+        } 
+        return this.assignments.filter(a => a.tag === this.currentTag)
+      }, 
     }
 }
