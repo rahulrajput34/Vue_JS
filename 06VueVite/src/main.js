@@ -1,13 +1,12 @@
+import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
-
-// We get the App componenet
-// pass this id inside the div of index.html
-// Just like react also here its change the code of index.html of given id to this vue code
-
+import router from './router'
+/*
 // Important note:
-// Vue JS also generates the vertual DOM as well like we used inside the React JS
-// Like React createApp is for creating the vertual DOM and the mount is used for the render it on the website
-// When users interact with the UI (e.g., clicking buttons, filling forms), they are interacting with the real DOM.
-// These interactions trigger state changes within the application, leading to updates in the virtual DOM.
-createApp(App).mount('#app')
+// Vue.js also generates a virtual DOM, similar to how React does.
+// In Vue, createApp is used to create the virtual DOM, and mount is used to render it on the website.
+*/
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
