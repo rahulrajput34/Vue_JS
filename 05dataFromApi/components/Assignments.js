@@ -1,3 +1,8 @@
+// TODO: Now another question is that I want to add the input filed exact below the In Progress assignments
+// Not inside the completed assignemnt
+
+//Answer:
+// So inside the AssignmentList we passed the slot over there so that we can pass the AssignmentCreate inside the AssignmentList
 import AssignmentList from "./AssignmentList.js";
 import AssignmentCreate from "./AssignmentCreate.js";
 export default {
@@ -6,18 +11,29 @@ export default {
     AssignmentCreate
   },
   template:/*html*/`
-  <section class="space-y-6 text-white">
-   <AssignmentList :assignments="filters.inProgress" title="In Progress"></AssignmentList>
-   <AssignmentList :assignments="filters.completed" title="Completed"></AssignmentList>
+  <section class="text-white flex gap-8">
+  <AssignmentList :assignments="filters.inProgress" title="In Progress">
     <AssignmentCreate @add="add"></AssignmentCreate>
-  </section>
+  </AssignmentList>
+  <AssignmentList 
+    canToggle
+    v-if="showCompleted"
+    :assignments="filters.completed" 
+    title="Completed"  
+    @toggle="showCompleted = !showCompleted"
+    >
+  </AssignmentList>
+  Rahul Rajput
+</section>
   `,
+// This above given text is going to display because of  slot we gave inside the AssignmentList
   data() {
     // We removed the values from here, create our own fake API also creates the fake server
     // Store it into the db.json
     // Now task is to use it over here
     return {
       assignments: [],
+      showCompleted: true
     }
   },
   computed: {
