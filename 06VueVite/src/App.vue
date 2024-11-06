@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld.vue'
 // VSCode folder --> store all the VSCode configuration over there
 // node_modules --> dependencies of Vue.js
 // public --> Whatever is static (icon, svg, imgs)
@@ -11,7 +11,6 @@ import HelloWorld from './components/HelloWorld.vue'
 // package.json --> all the packages that we have installed
 // .editorconfig to give good code quality and .prettierrc.json for formatting the code
 </script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
@@ -19,13 +18,17 @@ import HelloWorld from './components/HelloWorld.vue'
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
       <nav>
+        <!-- TODO: we use the RouterLink to navigate one component to another -->
+        <!-- If I pass the a tag over here then its works but its refresh the page whereas RouterLink not -->
+         <!-- So we must use RouterLink over here -->
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
       </nav>
     </div>
   </header>
-
+  // TODO: what is the routerview over here?
+  // This helps us to display the corresponding vue component on the browser
   <RouterView />
 </template>
 

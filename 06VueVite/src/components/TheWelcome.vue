@@ -9,6 +9,8 @@ import SupportIcon from './icons/IconSupport.vue'
 
 <template>
   <WelcomeItem>
+    <!-- #icon is v-slot:icon -->
+     <!-- we learn it in the slot lecture where we got the different slot according to their names -->
     <template #icon>
       <DocumentationIcon />
     </template>
