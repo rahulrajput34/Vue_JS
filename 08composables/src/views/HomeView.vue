@@ -11,8 +11,6 @@
 //     return {flash};
 //   }
 // }
-
-
 // We can write the cleaner way of writing this code by using setup
 import {useFlash} from "@/composables/useFlash.js"
 let {flash} = useFlash();
