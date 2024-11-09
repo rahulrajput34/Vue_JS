@@ -1,17 +1,20 @@
 <script setup>
-function onTabPressed(e){
-  // we can also get it from the target, we do not need to pass the ref as well
-  let textArea = e.target;
-    let val = textArea.value,
-    start = textArea.selectionStart,
-    end = textArea.selectionEnd
+import TabbableTextArea from '@/composables/TabbableTextArea.vue';
+import { ref } from 'vue';
+let comment = ref('Hi There!')
 
-    textArea.value = val.substring(0, start) + '\t' + val.substring(end);
-    textArea.selectionStart = textArea.selectionEnd = start + 1;
-}
+setTimeout(() => {
+  comment.value = 'I am changed buddy Whyyyy'
+}, 3000)
+
 </script>
 <template>
   <main>
-    <textarea @keydown.tab.prevent="onTabPressed" style="width: 100%; height: 300px;">Hi There!</textarea>
+    <form>
+      <TabbableTextArea 
+      v-model="comment" 
+      style="width: 100%; height: 300px;"
+      />
+    </form>
   </main>
 </template>
