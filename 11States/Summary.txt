@@ -1,0 +1,40 @@
+// Here, We are want to use the props we gave inside the home to the QuizFooterLinks component
+// So, we need to pass the props in the all the props
+
+// But its not a good practise to do that
+// There is a concpet call depedecy  injection
+// We use it over here to comeour from this condition
+
+============================>>>     First way    <<==============================
+Syntaxt
+==> In this concept we has the provide and inject
+// we provide by giving the provide keyword and using the inject, inject it whereever we want
+
+// This is how we provide it
+provide('key', 'I am provided by the provide keyword');
+
+//This is how we can inject it
+const key = inject('key');
+
+// TODO:
+// We can also make it reactive as well
+// And we change this data inside another component and its changed over here
+// But we dont know which component change it
+// In this case we can  also  pass the function inside the provide
+// Wherever we need 
+const {name, changeName} = inject('name');
+we inject it like this and use it
+
+
+// TODO:
+// There is also a better way than this above one which is faster and simple
+// This way is create the stores folder and give logic inside it and export from there
+// We can also give the function in it and use it somewhere else in that project
+
+// TODO: 
+// Now another best and fast way is the using the pinia tool 
+// Its better than vuex
+// and also fater than importing from somewhere
+// Its also has importing and but exporting but its good in term of perfomence of the code
+
+
