@@ -38,10 +38,6 @@ setTimeout(() => {
           Add
         </button>
       </form>
-
-    </template>
-    <template #footer>
-      Overrided Footer
     </template>
   </Modal>
 </template>

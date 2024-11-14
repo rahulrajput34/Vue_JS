@@ -13,11 +13,10 @@ defineProps({
             <div>
                 <slot name="body">Default body</slot>
             </div>
-            <footer  >
+            <footer>
                 <slot name="footer">
-                    <button 
-                        @click="$emit('close')"
-                    >
+                    <button @click="$emit('close')"
+                        class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200">
                         Default close
                     </button>
                 </slot>
@@ -26,7 +25,6 @@ defineProps({
     </div>
 
 </template>
-
 <style>
 .modal-mask {
     position: fixed;
@@ -41,6 +39,7 @@ defineProps({
     display: grid;
     place-items: center;
 }
+
 .modal-container {
     width: 300px;
     margin: 0px auto;
